@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='luawl.py',
     packages=['luawl'],
-    version='0.1',
+    version='1.0.4',
     license='MIT',
     description='A python package specifically made for luawl!',
     author='kaisei-kto',

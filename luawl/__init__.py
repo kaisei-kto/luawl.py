@@ -89,3 +89,6 @@ def get_logs(discord_id_or_key_or_hwid):
 
 def get_scripts():
 	return send_luawl_request('getAccountScripts', luawl_object())
+
+def get_buyer_role():
+	return send_luawl_request('getBuyerRole', luawl_object())
