@@ -93,12 +93,11 @@ def get_scripts():
 def get_buyer_role():
 	return send_luawl_request('getBuyerRole', luawl_object())
 
-def get_buyer_role(discord_id_or_key_or_hwid, tags, wl_script_id):
+def get_buyer_role(discord_id_or_key, tags, wl_script_id):
 	body = luawl_object()
 	body.wl_script_id = wl_script_id
-	body.discord_id = discord_id_or_key_or_hwid
-	body.wl_key = discord_id_or_key_or_hwid
-	body.HWID = discord_id_or_key_or_hwid
+	body.discord_id = discord_id_or_key
+	body.wl_key = discord_id_or_key
 	body.tags = tags
 
 	return send_luawl_request('addKeyTags', body)
