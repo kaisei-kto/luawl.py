@@ -1,2 +1,5 @@
 test.py
 *__pycache__
+publish.bat
+*.whl
+*.egg-info
