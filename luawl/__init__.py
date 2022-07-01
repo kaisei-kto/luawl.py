@@ -12,23 +12,34 @@ class luawl_object:
 def send_luawl_request(href, body):
 	return requests.post(luawl_api_url + href + '.php', json = body.__dict__).json()
 
-def get_whitelist(discord_id):
+def add_whitelist(discord_id, trial_hours, wl_script_id):
 	body = luawl_object()
 	body.discord_id = discord_id
+	body.trial_hours = trial_hours
+	body.wl_script_id = wl_script_id
+	
+	return send_luawl_request('whitelistUser', body)
+
+def get_whitelist(discord_id_or_key):
+	body = luawl_object()
+	body.discord_id = discord_id_or_key
+	body.wl_key = discord_id_or_key
 
 	response = send_luawl_request('getKey', body)
 	
 	return luawl_whitelist(response)
 
-def delete_whitelist(discord_id):
+def delete_whitelist(discord_id_or_key):
 	body = luawl_object()
-	body.discord_id = discord_id
+	body.discord_id = discord_id_or_key
+	body.wl_key = discord_id_or_key
 
 	return send_luawl_request('deleteKey', body)
 
-def reset_hwid(discord_id):
+def reset_hwid(discord_id_or_key):
 	body = luawl_object()
-	body.discord_id = discord_id
+	body.discord_id = discord_id_or_key
+	body.wl_key = discord_id_or_key
 
 	response = send_luawl_request('resetHWID', body)
 
@@ -93,7 +104,7 @@ def get_scripts():
 def get_buyer_role():
 	return send_luawl_request('getBuyerRole', luawl_object())
 
-def get_buyer_role(discord_id_or_key, tags, wl_script_id):
+def add_key_tags(discord_id_or_key, tags, wl_script_id):
 	body = luawl_object()
 	body.wl_script_id = wl_script_id
 	body.discord_id = discord_id_or_key
