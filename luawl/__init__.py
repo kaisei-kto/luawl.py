@@ -48,23 +48,26 @@ def reset_hwid(discord_id_or_key):
 
 	raise Exception(response.get('error'))
 
-def is_on_cooldown(discord_id):
+def is_on_cooldown(discord_id_or_key):
 	body = luawl_object()
-	body.discord_id = discord_id
+	body.discord_id = discord_id_or_key
+	body.wl_key = discord_id_or_key
 
 	return send_luawl_request('isOnCooldown', body)
 
-def remove_cooldown(discord_id):
+def remove_cooldown(discord_id_or_key):
 	body = luawl_object()
-	body.discord_id = discord_id
+	body.discord_id = discord_id_or_key
+	body.wl_key = discord_id_or_key
 
 	return send_luawl_request('removeCooldown', body)
 
-def update_key_status(discord_id, key_status: str):
+def update_key_status(discord_id_or_key, key_status: str):
 	if (not (key_status == 'Active' or key_status == 'Disabled' or key_status == 'Unassigned' or key_status == 'Assigned')):
 		raise Exception('Valid status: Active|Assigned|Disabled|Unassigned')
 	body = luawl_object()
-	body.discord_id = discord_id
+	body.discord_id = discord_id_or_key
+	body.wl_key = discord_id_or_key
 	body.status = key_status
 
 	return send_luawl_request('updateKeyStatus', body)
